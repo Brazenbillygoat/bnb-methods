@@ -33,11 +33,12 @@ class City < ActiveRecord::Base
       if reservation_count[count] == 0 || city.listings.count == 0
         next
       else
-        ratio_hash[city] = (city.listings.count / reservation_count[count])
+        ratio_hash[city] = (reservation_count[count] / city.listings.count)
       end
       
       count += 1
     end
+    
     ratio_hash.max_by{ |k, v| v }[0]
   end
       
