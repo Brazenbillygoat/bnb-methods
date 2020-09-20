@@ -42,7 +42,19 @@ class City < ActiveRecord::Base
     ratio_hash.max_by{ |k, v| v }[0]
   end
       
-   
+  def self.most_res
+    all_cities = City.all
+    city_hash = {}
+    
+    all_cities.each do |city|
+      list_count = 0
+      city.listings.each do |list|
+        city_hash[city] = (list_count += list.reservations.count)
+      end
+    end  
+    city_hash.max_by{|k, v| v}[0]  
+
+  end
 
 
 end
