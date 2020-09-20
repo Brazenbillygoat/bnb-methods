@@ -13,5 +13,7 @@ class Listing < ActiveRecord::Base
     end
 
 
+    #I am a change
+
 end
 
