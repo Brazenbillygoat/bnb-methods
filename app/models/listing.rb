@@ -7,7 +7,7 @@ class Listing < ActiveRecord::Base
 
   validates :address, :listing_type, :title, :description, :price, :neighborhood_id, presence: true
 
-  # before_destroy :change_to_guest
+  after_destroy :change_to_guest
   before_save :change_to_host
 
     def reserved_dates
@@ -24,7 +24,7 @@ class Listing < ActiveRecord::Base
     end
 
     def change_to_guest
-      self.host.listings.empty? ? self.host.host = false : self.host.host = true
+      self.host.listings.empty? ? self.host.update(host: false) : self.host.update(host: true)
 
     end
 
