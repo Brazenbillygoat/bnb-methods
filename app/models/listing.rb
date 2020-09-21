@@ -8,7 +8,7 @@ class Listing < ActiveRecord::Base
   validates :address, :listing_type, :title, :description, :price, :neighborhood_id, presence: true
 
   # before_destroy :change_to_guest
-  # before_save :change_to_host
+  before_save :change_to_host
 
     def reserved_dates
        self.reservations.map do |res|
@@ -20,7 +20,7 @@ class Listing < ActiveRecord::Base
     private
 
     def change_to_host
-      self.host = true
+      self.host.update(host: true)
     end
 
     def change_to_guest

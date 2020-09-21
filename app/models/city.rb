@@ -53,7 +53,6 @@ class City < ActiveRecord::Base
       end
     end  
     city_hash.max_by{|k, v| v}[0]  
-
   end
 
 
