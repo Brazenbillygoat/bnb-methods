@@ -16,6 +16,14 @@ class Listing < ActiveRecord::Base
       end
     end
 
+    def average_review_rating
+      
+      listing_ratings = self.reviews.map do |review|
+        review.rating
+      end
+      average_rating = listing_ratings.sum.to_f / listing_ratings.length
+    end
+
 
     private
 
